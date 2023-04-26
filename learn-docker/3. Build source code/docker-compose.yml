@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  server:
+    build: .
+    # ? using the Dockerfile in the "." directory, build the image
+    ports:
+      - "8080:8080"
+      - "9229:9229"
+    volumes:
+      - .:/app
+      # ? map the current directory "." to the "/app" directory in docker (app chính là WORKDIR trong Dockerfile)
+      - /app/node_modules
+      # ? map docker's node_modules seperately
+    command: npm run start:docker
